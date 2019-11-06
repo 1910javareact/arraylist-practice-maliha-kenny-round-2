@@ -29,8 +29,8 @@ public class MyArrayList {
 		if(index < 0 || index >= size) {
 			throw new RuntimeException("Index " + index + " out of bounds");
 		}
-		for(int i = index; i < arr.length ; i++) {
-			arr[index] = arr[index + 1];
+		for(int i = index; i < size ; i++) {
+			arr[i] = arr[i + 1];
 		}
 		size--;
 	}
@@ -45,15 +45,15 @@ public class MyArrayList {
 
 	@Override
 	public String toString() {
-		String s = "";
-		s += "[";
-		for(int i = 0; i < arr.length; i++) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		for(int i = 0; i < size; i++) {
 			if(i != 0) {
-				s += ", ";
+				sb.append(", ");
 			}
-			s += arr[i];
+			sb.append(arr[i]);
 		}
-		s += "]";
-		return s;
+		sb.append("]");
+		return sb.toString();
 	}
 }
