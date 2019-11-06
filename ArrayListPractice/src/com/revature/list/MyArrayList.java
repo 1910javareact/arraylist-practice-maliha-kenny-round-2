@@ -2,8 +2,6 @@ package com.revature.list;
 
 import java.util.Arrays;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-
 public class MyArrayList {
 
 	int[] arr = new int[10];
@@ -14,7 +12,7 @@ public class MyArrayList {
 		arr[size] = val;
 		
 		size++;
-		if(size == capacity) {
+		if(size >= capacity) {
 			capacity *= 2;
 			arr = Arrays.copyOf(arr, capacity);
 		}
@@ -22,14 +20,14 @@ public class MyArrayList {
 
 	public void set(int index, int val) {
 		if(index < 0 || index >= size) {
-			return;
+			throw new RuntimeException("Index " + index + " out of bounds");
 		}
 		arr[index] = val;
 	}
 
 	public void remove(int index) {
 		if(index < 0 || index >= size) {
-			return;
+			throw new RuntimeException("Index " + index + " out of bounds");
 		}
 		for(int i = index; i < arr.length ; i++) {
 			arr[index] = arr[index + 1];
@@ -39,7 +37,7 @@ public class MyArrayList {
 
 	public int get(int index) {
 		if(index < 0 || index >= size) {
-			return 0;
+			throw new RuntimeException("Index " + index + " out of bounds");
 		}else {
 			return arr[index];
 		}
@@ -47,14 +45,15 @@ public class MyArrayList {
 
 	@Override
 	public String toString() {
-		System.out.print("[");
+		String s = "";
+		s += "[";
 		for(int i = 0; i < arr.length; i++) {
 			if(i != 0) {
-				System.out.print(", ");
+				s += ", ";
 			}
-			System.out.print(arr[i]);
+			s += arr[i];
 		}
-		System.out.println("]");
-		return arr.toString();
+		s += "]";
+		return s;
 	}
 }

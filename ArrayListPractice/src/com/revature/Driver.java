@@ -55,5 +55,6 @@ public class Driver {
 		double ratio = (double) (myTime - regTime) / (double) regTime;
 		
 		System.out.printf("The original ArrayList is %.2f%% faster.%n", ratio * 100);
+		System.out.println(mylist.toString());
 	}
 }
